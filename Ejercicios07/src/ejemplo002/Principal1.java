@@ -24,11 +24,17 @@ public class Principal1 {
         double promedioEstudiante;
         int numeroNotasArribaPromedio;
         int[] filaNotas;
+        String userName;
+        double notaBaja;
+        double notaAlta;
         String mensajeFinal = "";
         for (int i = 0; i < nombres.length; i++) {
             nombre = nombres[i];
             apellido = apellidos[i];
             filaNotas = notas[i];
+            userName = obtenerUsername(nombre, apellido);
+            notaBaja = obtenerNotaBaja(filaNotas);
+            notaAlta = obtenerNotaAlta(filaNotas);
             promedioEstudiante = funcion01(filaNotas);
             numeroNotasArribaPromedio = funcion02(filaNotas,
                     promedio_paralelo);
@@ -38,8 +44,9 @@ public class Principal1 {
             presentar Reporte 
              */
             mensajeFinal = String.format("%s%s\n", mensajeFinal,
-                    presentarReporte(nombre, apellido, tipoNotas,
-                            promedioEstudiante, numeroNotasArribaPromedio));
+                    presentarReporte(nombre, apellido, userName, tipoNotas,
+                            promedioEstudiante, numeroNotasArribaPromedio,
+                            notaBaja, notaAlta));
         }
         /*
         llamamos al procedimiento agregarRegistro y le enviamos como parametro 
@@ -50,15 +57,18 @@ public class Principal1 {
 
     }
 
-    public static String presentarReporte(String nom, String ap, String notas,
-            double prom, int numeroNotas) {
+    public static String presentarReporte(String nom, String ap, String user,
+            String notas, double prom, int numeroNotas, double notaBaja, double notaAlta) {
         String reporte = String.format("Nombres: %s\n"
                 + "Apellidos: %s\n"
+                + "Username: %s\n"
                 + "Con notas: \n"
                 + "%s\n"
                 + "Promedio - %2f\n"
-                + "Número de notas arriba del promedio: %d\n\n",
-                nom, ap, notas, prom, numeroNotas);
+                + "Número de notas arriba del promedio: %d\n"
+                + "Nota más baja - %.2f\n"
+                + "Nota más alta - %.2f\n\n",
+                nom, ap, user, notas, prom, numeroNotas, notaBaja, notaAlta);
 
         return reporte;
     }
@@ -124,6 +134,38 @@ public class Principal1 {
         }
 
         return cadena;
+    }
+
+    public static String obtenerUsername(String nombre, String apellido) {
+        String userName;
+        String inicial = nombre.substring(0, 1);
+        userName = String.format("%s.%s@utpl.edu.ec",
+                 inicial,
+                 apellido);
+        userName = userName.toLowerCase();
+        return userName;
+    }
+
+    public static double obtenerNotaBaja(int[] filaNotas) {
+        double notaBaja;
+        notaBaja = filaNotas[0];
+        for (int i = 0; i < filaNotas.length; i++) {
+            if (filaNotas[i] < notaBaja) {
+                notaBaja = filaNotas[i];
+            }
+        }
+        return notaBaja;
+    }
+
+    public static double obtenerNotaAlta(int[] filaNotas) {
+        double notaAlta;
+        notaAlta = filaNotas[0];
+        for (int i = 0; i < filaNotas.length; i++) {
+            if (filaNotas[i] > notaAlta) {
+                notaAlta = filaNotas[i];
+            }
+        }
+        return notaAlta;
     }
 
 }
