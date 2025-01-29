@@ -12,10 +12,13 @@ public class Principal {
 
     public static void main(String[] args) {
         
-        String [] nombres = { "Jason", "Jonathan", "Kristen", "Robin", "Michelle", "Emily", "Noah", "Daniel"};
-        String [] apellidos = { "Lynch", "George", "Lang", "Cochran", "Young", "Fletcher", "Adkins", "Harris"};
-        int [][] notas = { {10, 80, 80, 95}, {40, 80, 80, 45}, {80, 10, 20, 55}, {70, 30, 20, 65}, 
-            {60, 50, 70, 75}, {50, 70, 30, 85},{40, 80, 40, 45}, {30, 90, 50, 95}};
+        String [] nombres = { "Jason", "Jonathan", "Kristen", "Robin", 
+            "Michelle", "Emily", "Noah", "Daniel"};
+        String [] apellidos = { "Lynch", "George", "Lang", "Cochran", "Young",
+            "Fletcher", "Adkins", "Harris"};
+        int [][] notas = { {10, 80, 80, 95}, {40, 80, 80, 45}, {80, 10, 20, 55},
+            {70, 30, 20, 65}, {60, 50, 70, 75}, {50, 70, 30, 85},
+            {40, 80, 40, 45}, {30, 90, 50, 95}};
         
         double promedio_paralelo = obtenerPromedioParalelo(notas);
         String nombre;
